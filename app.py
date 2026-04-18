@@ -7,7 +7,7 @@ ARQUIVO = "dados.txt"
 SENHA = "0314"
 
 @app.route("/")
-def home():
+def home(<a href="/static/arquivo.pdf" target="_blank">Abrir PDF 📄</a>):
     return '''
     <html>
     <head>
@@ -59,7 +59,7 @@ def home():
 
     <body>
         <div class="box">
-            <h1>Cadastro:3</h1>
+            <h1>Cadastrozinho:3</h1>
 
             <form method="POST" action="/salvar">
                 <input name="nome" placeholder="Digite seu nomezinho:0">
@@ -68,7 +68,7 @@ def home():
             </form>
 
             <a href="/ver">Ver nomes</a>
-            <a href="/login">Login 🔐</a>
+            <a href="/login">admin 🔐</a>
         </div>
     </body>
     </html>
@@ -161,7 +161,7 @@ def auth():
         '''
     else:
         return '''
-        <h1>Senha errada 😡</h1>
+        <h1>Senha erradona</h1>
         <a href="/login">Tentar de novo</a>
         '''
 
