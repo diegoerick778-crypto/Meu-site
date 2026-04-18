@@ -1,4 +1,5 @@
 from flask import Flask, request, redirect
+import os
 
 app = Flask(__name__)
 
@@ -58,16 +59,16 @@ def home():
 
     <body>
         <div class="box">
-            <h1>Cadastro(ib:erick.zz76)</h1>
+            <h1>Cadastro:3</h1>
 
             <form method="POST" action="/salvar">
-                <input name="nome" placeholder="Digite seu nomexx">
+                <input name="nome" placeholder="Digite seu nomezinho:0">
                 <br><br>
                 <button type="submit">Enviar</button>
             </form>
 
             <a href="/ver">Ver nomes</a>
-            <a href="/login">senha 🔐</a>
+            <a href="/login">Login 🔐</a>
         </div>
     </body>
     </html>
@@ -88,9 +89,13 @@ def ver():
         with open(ARQUIVO, "r") as f:
             nomes = f.read()
             return f"""
+            <html>
+            <body style="background:#020617;color:white;text-align:center;font-family:Arial;">
             <h1>Nomes salvos</h1>
             <p>{nomes.replace("\\n","<br>")}</p>
             <a href="/">Voltar</a>
+            </body>
+            </html>
             """
     except:
         return "<h1>Nada salvo ainda</h1><a href='/'>Voltar</a>"
@@ -111,13 +116,54 @@ def auth():
 
     if senha == SENHA:
         return '''
-        <h1>Acesso liberadinho</h1>
-        <a href="/">Ir pro site</a>
+        <html>
+        <head>
+        <style>
+            body {
+                background-color: black;
+                color: #00ff00;
+                font-family: monospace;
+                text-align: center;
+                margin-top: 100px;
+            }
+
+            h1 {
+                font-size: 40px;
+                text-shadow: 0 0 10px #00ff00;
+            }
+
+            p {
+                animation: piscar 1s infinite;
+            }
+
+            @keyframes piscar {
+                0% {opacity: 1;}
+                50% {opacity: 0.2;}
+                100% {opacity: 1;}
+            }
+
+            a {
+                color: #00ff00;
+                display: block;
+                margin-top: 20px;
+            }
+        </style>
+        </head>
+
+        <body>
+            <h1>ACESSO LIBERADEXX 💻</h1>
+            <p>Invadindo sistema...</p>
+            <p>Bypass firewall...</p>
+            <p>Root access granted</p>
+            <a href="/">Entrar no sistema</a>
+        </body>
+        </html>
         '''
     else:
         return '''
-        <h1>Senha erradinha</h1>
+        <h1>Senha errada 😡</h1>
         <a href="/login">Tentar de novo</a>
         '''
 
-app.run(host="0.0.0.0", port=5000)
+port = int(os.environ.get("PORT", 5000))
+app.run(host="0.0.0.0", port=port)
